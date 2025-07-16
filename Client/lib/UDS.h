@@ -1,0 +1,131 @@
+/* ==================================================================================================== */
+/*
+ *  UDS.h
+ *  Unified Diagnostics Services (UDS)
+ *    ISO: 14229 Part 1   - Diagonostics Services
+ *    ISO: 14229 Part 2   - Timing
+ *    ISO: 14229 Part 3   - CAN
+ *  Version: v1.3:0
+ *  Developed By: Alakshendra Singh
+ *  For Reporting Any Issue Don't Contact Me. Fix Yourself
+*/
+/* ==================================================================================================== */
+
+/* ==================================================================================================== */
+/**
+ * @file        UDS.h
+ * @author      Alakshendra Singh
+ * @brief       Unified Diagnostics Services on CAN (UDS)
+ * @version     1.3
+ * 
+ * @copyright   Copyright (c) 2025
+ */
+/* ==================================================================================================== */
+
+#ifndef _UDS
+#define _UDS
+
+#include "windows.h"
+#include "DoCAN.h"
+
+/* ==================================================================================================== */
+/**
+ * @class       DriverPCAN
+ * @brief       PCAN Driver For CAN According To ISO 11898-1
+ */
+/* ---------------------------------------------------------------------------------------------------- */
+class ISO_UDS {
+  private:
+    ISO_DoCAN DoCAN;
+
+
+  public:
+    struct {
+      BYTE DATA[4096];
+      DWORD LEN;
+      DWORD ID;
+    } MESSAGE;
+
+    ISO_UDS (void) {
+      cout << "\nUDS Driver Loaded";
+    }
+    ~ISO_UDS (void) {
+      cout << "\nUDS Driver Unloaded";
+    }
+
+    uint64_t Clock (uint8_t Mode = 0);
+    uint64_t MicroClock (void);
+    uint64_t MilliClock (void);
+    void Delay (uint64_t Time, uint8_t Mode = 0);
+};
+//ISO_UDS UDS;
+/* ==================================================================================================== */
+
+
+
+/* ==================================================================================================== */
+/**
+ * @name        Clock
+ * @scope       ISO_UDS (Public)
+ * @brief       Get Central Clock Time accoridng to Mode
+ * @param [Mode]    Mode of Clock Resolution
+ * @return      Time
+ */
+/* ---------------------------------------------------------------------------------------------------- */
+uint64_t ISO_UDS::Clock (uint8_t Mode) {
+  return DoCAN.Clock (Mode);
+}
+/* ==================================================================================================== */
+
+/* ==================================================================================================== */
+/**
+ * @name        MicroClock
+ * @scope       ISO_UDS (Public)
+ * @brief       Get Central Clock Time in MicroSeconds
+ * @param []    Nothing
+ * @return      Time in MicroSeconds
+ */
+/* ---------------------------------------------------------------------------------------------------- */
+uint64_t ISO_UDS::MicroClock (void) {
+  return DoCAN.MicroClock();
+}
+/* ==================================================================================================== */
+
+/* ==================================================================================================== */
+/**
+ * @name        MilliClock
+ * @scope       ISO_UDS (Public)
+ * @brief       Get Central Clock Time in MilliSecond
+ * @param []    Nothing
+ * @return      Time in MilliSecond
+ */
+/* ---------------------------------------------------------------------------------------------------- */
+uint64_t ISO_UDS::MilliClock (void) {
+  return DoCAN.MilliClock();
+}
+/* ==================================================================================================== */
+
+/* ==================================================================================================== */
+/**
+ * @name        Delay
+ * @scope       ISO_UDS (Public)
+ * @brief       Delay for Some Time accoridng to Mode
+ * @param [Time]    Time of Delay
+ * @param [Mode]    Mode of Clock Resolution
+ * @return      Nothing
+ */
+/* ---------------------------------------------------------------------------------------------------- */
+void ISO_UDS::Delay (uint64_t Time, uint8_t Mode) {
+  DoCAN.Delay (Time, Mode);
+}
+/* ==================================================================================================== */
+
+
+
+/* ==================================================================================================== */
+/**
+ * @end       End of File UDS.h
+ */
+/* ---------------------------------------------------------------------------------------------------- */
+#endif  // _UDS
+/* ==================================================================================================== */
