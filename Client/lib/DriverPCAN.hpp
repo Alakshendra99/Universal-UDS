@@ -75,7 +75,7 @@ class DriverPCAN {
 /* ==================================================================================================== */
 /**
  * @name        Initialize (Overloaded)
- * @scope       DriverPCAN (Public)
+ * @class       DriverPCAN (Public)
  * @brief       PCAN Driver Initializer
  * @param [KBPS]    Speed in KBPS
  * @return      Nothing
@@ -115,7 +115,7 @@ TPCANStatus DriverPCAN::Initialize (uint16_t KBPS) {
 /* ==================================================================================================== */
 /**
  * @name        Initialize (Overloaded)
- * @scope       DriverPCAN (Public)
+ * @class       DriverPCAN (Public)
  * @brief       PCAN Driver Initializer
  * @param []    Nothing
  * @return      Nothing
@@ -139,7 +139,7 @@ TPCANStatus DriverPCAN::Initialize (void) {
 /* ==================================================================================================== */
 /**
  * @name        DriverPCAN (Overloaded)
- * @scope       DriverPCAN (Public)
+ * @class       DriverPCAN (Public)
  * @brief       PCAN Driver Uninitializer
  * @param []    Nothing
  * @return      Nothing
@@ -156,7 +156,7 @@ TPCANStatus DriverPCAN::Uninitialize (void) {
 /* ==================================================================================================== */
 /**
  * @name        Write (Overloaded)
- * @scope       DriverPCAN (Public)
+ * @class       DriverPCAN (Public)
  * @brief       Write Data on CAN with Raw Configuration
  * @param [CanID]     CAN ID
  * @param [Data]      Data Array Pointer
@@ -186,7 +186,7 @@ uint8_t DriverPCAN::Write (DWORD CanID, BYTE Data[], BYTE Length, TPCANMessageTy
 /* ==================================================================================================== */
 /**
  * @name        Write (Overloaded)
- * @scope       DriverPCAN (Public)
+ * @class       DriverPCAN (Public)
  * @brief       Write Data on CAN via CAN Message Stucture
  * @param [MSG]   CAN Message Stucture
  * @return      Status of PCAN
@@ -206,7 +206,7 @@ uint8_t DriverPCAN::Write (TPCANMsg MSG) {
 /* ==================================================================================================== */
 /**
  * @name        Read (Overloaded)
- * @scope       DriverPCAN (Public)
+ * @class       DriverPCAN (Public)
  * @brief       Read Data from CAN with Timestamps
  * @param [MSG]     CAN Message Block Structure Pointer
  * @param [Time]    Timestamp Structure Pointer
@@ -223,7 +223,7 @@ TPCANStatus DriverPCAN::Read (TPCANMsg &MSG, TPCANTimestamp &Time) {
 /* ==================================================================================================== */
 /**
  * @name        Read (Overloaded)
- * @scope       DriverPCAN (Public)
+ * @class       DriverPCAN (Public)
  * @brief       Read Data from CAN
  * @param [MSG]     CAN Message Block Structure Pointer
  * @return      Status of PCAN
@@ -240,7 +240,7 @@ TPCANStatus DriverPCAN::Read (TPCANMsg &MSG) {
 /* ==================================================================================================== */
 /**
  * @name        Show (Overloaded)
- * @scope       DriverPCAN (Public)
+ * @class       DriverPCAN (Public)
  * @brief       Show CAN Message with Timestamp
  * @param [MSG]     CAN Message Structure
  * @param [Time]    Timestamp Structure
@@ -263,7 +263,7 @@ void DriverPCAN::Show (TPCANMsg MSG, TPCANTimestamp Time) {
 /* ==================================================================================================== */
 /**
  * @name        Show (Overloaded)
- * @scope       DriverPCAN (Public)
+ * @class       DriverPCAN (Public)
  * @brief       Show CAN Message
  * @param [MSG]     CAN Message Structure
  * @return      Nothing
@@ -287,7 +287,7 @@ void DriverPCAN::Show (TPCANMsg MSG) {
 /* ==================================================================================================== */
 /**
  * @name        Filter (Overloaded)
- * @scope       DriverPCAN (Public)
+ * @class       DriverPCAN (Public)
  * @brief       Filter Read Range of Messages at Hardware Level
  * @param [CanID1]      CAN ID Lower Limit
  * @param [CanID2]      CAN ID Upper Limit
@@ -305,7 +305,7 @@ TPCANStatus DriverPCAN::Filter (DWORD CanID1, DWORD CanID2, TPCANMessageType Typ
 /* ==================================================================================================== */
 /**
  * @name        Filter (Overloaded)
- * @scope       DriverPCAN (Public)
+ * @class       DriverPCAN (Public)
  * @brief       Filter Read Single Messages at Hardware Level
  * @param [CanID]       CAN ID
  * @param [Type]        CAN Frame Type (Enum)

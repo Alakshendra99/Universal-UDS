@@ -25,7 +25,7 @@
 #ifndef _UDS
 #define _UDS
 
-#include "windows.h"
+//#include <windows.h>
 #include "DoCAN.h"
 
 /* ==================================================================================================== */
@@ -41,9 +41,9 @@ class ISO_UDS {
 
   public:
     struct {
-      BYTE DATA[4096];
-      DWORD LEN;
-      DWORD ID;
+      uint8_t DATA[4096];
+      uint16_t LEN;
+      uint32_t ID;
     } MESSAGE;
 
     ISO_UDS (void) {
@@ -66,7 +66,7 @@ class ISO_UDS {
 /* ==================================================================================================== */
 /**
  * @name        Clock
- * @scope       ISO_UDS (Public)
+ * @class       ISO_UDS (Public)
  * @brief       Get Central Clock Time accoridng to Mode
  * @param [Mode]    Mode of Clock Resolution
  * @return      Time
@@ -80,7 +80,7 @@ uint64_t ISO_UDS::Clock (uint8_t Mode) {
 /* ==================================================================================================== */
 /**
  * @name        MicroClock
- * @scope       ISO_UDS (Public)
+ * @class       ISO_UDS (Public)
  * @brief       Get Central Clock Time in MicroSeconds
  * @param []    Nothing
  * @return      Time in MicroSeconds
@@ -94,7 +94,7 @@ uint64_t ISO_UDS::MicroClock (void) {
 /* ==================================================================================================== */
 /**
  * @name        MilliClock
- * @scope       ISO_UDS (Public)
+ * @class       ISO_UDS (Public)
  * @brief       Get Central Clock Time in MilliSecond
  * @param []    Nothing
  * @return      Time in MilliSecond
@@ -108,7 +108,7 @@ uint64_t ISO_UDS::MilliClock (void) {
 /* ==================================================================================================== */
 /**
  * @name        Delay
- * @scope       ISO_UDS (Public)
+ * @class       ISO_UDS (Public)
  * @brief       Delay for Some Time accoridng to Mode
  * @param [Time]    Time of Delay
  * @param [Mode]    Mode of Clock Resolution
