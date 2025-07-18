@@ -298,6 +298,10 @@ void DriverPCAN::Show (TPCANMsg MSG) {
 TPCANStatus DriverPCAN::Filter (DWORD CanID1, DWORD CanID2, TPCANMessageType Type) {
   TPCANStatus Status;
   Status = CAN_FilterMessages(PCAN_USBBUS1, CanID1, CanID2, Type);
+  if (PCAN_ERROR_OK != Status) {
+    return Status;
+  }
+  Status = CAN_Reset(PCAN_USBBUS1);
   return Status;
 }
 /* ==================================================================================================== */
@@ -315,9 +319,14 @@ TPCANStatus DriverPCAN::Filter (DWORD CanID1, DWORD CanID2, TPCANMessageType Typ
 TPCANStatus DriverPCAN::Filter (DWORD CanID, TPCANMessageType Type) {
   TPCANStatus Status;
   Status = CAN_FilterMessages(PCAN_USBBUS1, CanID, CanID, Type);
+  if (PCAN_ERROR_OK != Status) {
+    return Status;
+  }
+  Status = CAN_Reset(PCAN_USBBUS1);
   return Status;
 }
 /* ==================================================================================================== */
+
 
 /* ==================================================================================================== */
 /**

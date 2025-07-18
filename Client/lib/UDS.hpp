@@ -17,7 +17,7 @@
  * @author      Alakshendra Singh
  * @brief       Unified Diagnostics Services on CAN (UDS)
  * @version     1.3
- * 
+ *
  * @copyright   Copyright (c) 2025
  */
 /* ==================================================================================================== */
@@ -25,8 +25,7 @@
 #ifndef _UDS
 #define _UDS
 
-//#include <windows.h>
-#include "DoCAN.h"
+#include "DoCAN.hpp"
 
 /* ==================================================================================================== */
 /**
@@ -41,7 +40,7 @@ class ISO_UDS {
 
   public:
     struct {
-      uint8_t DATA[4096];
+      uint8_t DATA[4095];
       uint16_t LEN;
       uint32_t ID;
     } MESSAGE;
@@ -53,6 +52,8 @@ class ISO_UDS {
       cout << "\nUDS Driver Unloaded";
     }
 
+    void Start (void);
+
     uint64_t Clock (uint8_t Mode = 0);
     uint64_t MicroClock (void);
     uint64_t MilliClock (void);
@@ -60,6 +61,103 @@ class ISO_UDS {
 };
 //ISO_UDS UDS;
 /* ==================================================================================================== */
+
+
+
+
+
+
+
+
+
+
+
+void ISO_UDS::Start (void) {
+  DoCAN.SetBuffer (&MESSAGE.ID, &MESSAGE.LEN, MESSAGE.DATA);
+  DoCAN.SetUDSParameter (0x00, 0x00, 0x00, 4095);
+  DoCAN.SetTiming (1000000, 5000000);
+  DoCAN.SetCANID (0x785, 0x78D, 0x7DF);
+  DoCAN.Start();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -119,7 +217,6 @@ void ISO_UDS::Delay (uint64_t Time, uint8_t Mode) {
   DoCAN.Delay (Time, Mode);
 }
 /* ==================================================================================================== */
-
 
 
 /* ==================================================================================================== */
