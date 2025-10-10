@@ -3,7 +3,7 @@
 *  DriverPCAN.h
 *  PCAN Driver Operation
 *    ISO: 11898 Part 1 - Controller Area Network (CAN)
-*  Version: v1.0:0
+*  Version: v2.0:0
 *  Developed By: Alakshendra Singh
 *  For Reporting Any Issue Don't Contact Me. Fix Yourself
 */
@@ -45,16 +45,14 @@ class DriverPCAN {
   public:
     TPCANMsg MESSAGE;
 
-    DriverPCAN (void) {
-      cout << "\nPeak System's PCAN Driver Loaded";
-    }
-    ~DriverPCAN (void) {
-      cout << "\nPeak System's PCAN Driver Unloaded";
-    }
+    DriverPCAN (void) { }
+    ~DriverPCAN (void) { }
 
     TPCANStatus Initialize (uint16_t KBPS);
     TPCANStatus Initialize (void);
     TPCANStatus Uninitialize (void);
+
+    TPCANStatus Start (uint16_t KBPS);
 
     uint8_t Write (DWORD CanID, BYTE Data[], BYTE Length = 8, TPCANMessageType Type =
         PCAN_MESSAGE_STANDARD);
@@ -65,6 +63,8 @@ class DriverPCAN {
 
     void Show (TPCANMsg MSG, TPCANTimestamp Time);
     void Show (TPCANMsg MSG);
+
+    TPCANStatus ResetFIFO (void);
 
     TPCANStatus Filter (DWORD CanID1, DWORD CanID2, TPCANMessageType Type);
     TPCANStatus Filter (DWORD CanID, TPCANMessageType Type = PCAN_MESSAGE_STANDARD);
@@ -84,28 +84,20 @@ class DriverPCAN {
 TPCANStatus DriverPCAN::Initialize (uint16_t KBPS) {
   TPCANStatus Status;
   TPCANBaudrate Speed = PCAN_BAUD_500K;
-  cout << "\nDriver For Single Channel Peak System's PCAN Tool";
   if (KBPS == 500) {
     Speed = PCAN_BAUD_500K;
-    cout << "\nPCAN Speed Set To 500KBPS";
   } else if (KBPS == 250) {
     Speed = PCAN_BAUD_250K;
-    cout << "\nPCAN Speed Set To 250KBPS";
   } else if (KBPS == 1000) {
     Speed = PCAN_BAUD_1M;
-    cout << "\nPCAN Speed Set To 1MBPS";
   } else {
     Speed = PCAN_BAUD_500K;
-    cout << "\nPCAN Speed Defaulted To 500KBPS";
   }
 
   do {
     Status = CAN_Initialize(PCAN_USBBUS1, Speed);
     if (Status != PCAN_ERROR_OK) {
-      cout << "\nPCAN Initialization Failed! \nConnect Device Properly";
-      Sleep(5000);
-    } else {
-      cout << "\nPCAN Initialized Successfully\nPCAN Ready For Use";
+      Sleep(7000);
     }
   } while (Status != PCAN_ERROR_OK);
   return Status;
@@ -126,12 +118,35 @@ TPCANStatus DriverPCAN::Initialize (void) {
   do {
     Status = CAN_Initialize(PCAN_USBBUS1, PCAN_BAUD_500K);
     if (Status != PCAN_ERROR_OK) {
-      cout << "\nPCAN Initialization Failed! \nConnect Device Properly";
-      Sleep(5000);
-    } else {
-      cout << "\nPCAN Initialized Successfully\nPCAN Ready For Use";
-    }
+      Sleep(7000);
+    } 
   } while (Status != PCAN_ERROR_OK);
+  return Status;
+}
+/* ==================================================================================================== */
+
+/* ==================================================================================================== */
+/**
+ * @name        Start (Overloaded)
+ * @class       DriverPCAN (Public)
+ * @brief       PCAN Driver Initializer Raw Driver
+ * @param []    Nothing
+ * @return      Nothing
+ */
+/* ---------------------------------------------------------------------------------------------------- */
+TPCANStatus DriverPCAN::Start (uint16_t KBPS) {
+  TPCANStatus Status;
+  TPCANBaudrate Speed = PCAN_BAUD_500K;
+  if (KBPS == 500) {
+    Speed = PCAN_BAUD_500K;
+  } else if (KBPS == 250) {
+    Speed = PCAN_BAUD_250K;
+  } else if (KBPS == 1000) {
+    Speed = PCAN_BAUD_1M;
+  } else {
+    Speed = PCAN_BAUD_500K;
+  }
+  Status = CAN_Initialize(PCAN_USBBUS1, Speed);
   return Status;
 }
 /* ==================================================================================================== */
@@ -148,7 +163,6 @@ TPCANStatus DriverPCAN::Initialize (void) {
 TPCANStatus DriverPCAN::Uninitialize (void) {
   TPCANStatus Status;
   Status = CAN_Uninitialize(PCAN_USBBUS1);
-  cout << "\nPCAN Uninitialized\nSafe To Disconnect";
   return Status;
 }
 /* ==================================================================================================== */
@@ -324,6 +338,20 @@ TPCANStatus DriverPCAN::Filter (DWORD CanID, TPCANMessageType Type) {
   }
   Status = CAN_Reset(PCAN_USBBUS1);
   return Status;
+}
+/* ==================================================================================================== */
+
+/* ==================================================================================================== */
+/**
+ * @name        ResetFIFO
+ * @class       DriverPCAN (Public)
+ * @brief       Resets the Receive and Transmit Queues of the PCAN Channel 
+ * @param []    Nothing
+ * @return      Status of PCAN
+ */
+/* ---------------------------------------------------------------------------------------------------- */
+TPCANStatus DriverPCAN::ResetFIFO (void) {
+  return CAN_Reset(PCAN_USBBUS1);
 }
 /* ==================================================================================================== */
 

@@ -1,0 +1,64 @@
+[
+  {
+    "WAIT" : 10,
+    "TYPE" : "NOTE",
+    "SERVICE" : "Request Data Identiifers",
+    "START MEMORY ADDRESS" : "SS",
+    "LAST MEMORY ADDRESS" : "LL",
+    "MEMORY BLOCK SIZE" : "MM",
+    "MEMORY BLOCK CRC" : "RR",
+    "IGNORE DATA" : "XX",
+    "TRANSFER DATA CHUNK LENGTH" : "TT"
+  },
+  {
+    "WAIT" : 10,
+    "TYPE" : "NORMAL",
+    "SERVICE" : "Default Session",
+    "ADDRESS" : "PHY",
+    "SUPPRESS" : "N",
+    "CHECK" : "Y",
+    "REQUEST" : "10 01",
+    "RESPONSE" : "50 01 XX XX XX XX"
+  },
+  {
+    "WAIT" : 10,
+    "TYPE" : "NORMAL",
+    "SERVICE" : "Default Session",
+    "ADDRESS" : "FUN",
+    "SUPPRESS" : "Y",
+    "CHECK" : "N",
+    "REQUEST" : "10 01",
+    "RESPONSE" : "50 01 XX XX XX XX"
+  },
+  {
+    "WAIT" : 10,
+    "TYPE" : "SECURITY",
+    "SERVICE" : "Programming Security Access",
+    "DLL" : "dll\\NewPROGDLL.dll",
+    "LEVEL" : 1
+  },
+  {
+    "WAIT" : 100,
+    "TYPE" : "DOWNLOAD",
+    "SERVICE" : "FLash ECU",
+    "FILE" : "flash\\34C6.hex",
+    "CRC-ALGORITHM" : "CRC16",
+    "CRC-POLY" : "3D65",
+    "CRC-INIT" : "0000",
+    "CRC-FINAL" : "FFFF",
+    "CRC-INPUTREVERSE" : "Y",
+    "CRC-OUTPUTREVERSE" : "Y",
+    "ERASE-ENABLE" : "N",
+    "ERASE-REQ" : "31 01 FF 00 SS SS SS SS MM MM MM MM",
+    "ERASE-CHECK" : "Y",
+    "ERASE-RES" : "71 FF 00 01 00",
+    "CRC-ENABLE" : "Y",
+    "CRC-REQ" : "31 01 FF 01 SS SS SS SS MM MM MM MM RR RR",
+    "CRC-CHECK" : "Y",
+    "CRC-RES" : "71 01 FF 01 01 00",
+    "SER-DOWN-REQ" : "34 00 44 SS SS SS SS MM MM MM MM",
+    "SER-DOWN-RES" : "74 00 TT",
+    "SER-EXIT-REQ" : "37",
+    "SER-EXIT-RES" : "77"
+  }
+]

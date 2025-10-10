@@ -1,0 +1,210 @@
+[
+  {
+    "SERVICE" : "Diagnostics Session",
+    "SID" : "10",
+    "FUNCTION" : "Default Session",
+    "REQUEST" : "10 01"
+  },
+  {
+    "SERVICE" : "Diagnostics Session",
+    "SID" : "10",
+    "FUNCTION" : "Programming Session",
+    "REQUEST" : "10 02"
+  },
+  {
+    "SERVICE" : "Diagnostics Session",
+    "SID" : "10",
+    "FUNCTION" : "Extended Session",
+    "REQUEST" : "10 03"
+  },
+  {
+    "SERVICE" : "ECU Reset",
+    "SID" : "11",
+    "FUNCTION" : "Hard Reset",
+    "REQUEST" : "11 01"
+  },
+  {
+    "SERVICE" : "Communication Control",
+    "SID" : "28",
+    "FUNCTION" : "Enable RX & TX",
+    "REQUEST" : "28 00",
+    "RESPONSE" : "68 00",
+    "CHECK" : "FALSE"
+  },
+  {
+    "SERVICE" : "Communication Control",
+    "SID" : "28",
+    "FUNCTION" : "Enable RX & Disable TX",
+    "REQUEST" : "28 01",
+    "RESPONSE" : "68 01",
+    "CHECK" : "FALSE"
+  },
+  {
+    "SERVICE" : "Communication Control",
+    "SID" : "28",
+    "FUNCTION" : "Enable TX & Disable RX",
+    "REQUEST" : "28 02",
+    "RESPONSE" : "68 02",
+    "CHECK" : "FALSE"
+  },
+  {
+    "SERVICE" : "Communication Control",
+    "SID" : "28",
+    "FUNCTION" : "Disable RX & TX",
+    "REQUEST" : "28 03",
+    "RESPONSE" : "68 03",
+    "CHECK" : "FALSE"
+  },
+  {
+    "SERVICE" : "Tester Present",
+    "SID" : "3E",
+    "FUNCTION" : "Tester Present",
+    "REQUEST" : "3E 00",
+    "RESPONSE" : "7E 00",
+    "CHECK" : "FALSE"
+  },
+  {
+    "SERVICE" : "Control DTC Setting",
+    "SID" : "85",
+    "FUNCTION" : "DTC Setting ON",
+    "REQUEST" : "85 01",
+    "RESPONSE" : "C5 01",
+    "CHECK" : "FALSE"
+  },
+  {
+    "SERVICE" : "Control DTC Setting",
+    "SID" : "85",
+    "FUNCTION" : "DTC Setting OFF",
+    "REQUEST" : "85 02",
+    "RESPONSE" : "C5 02",
+    "CHECK" : "FALSE"
+  },
+  {
+    "SERVICE" : "Clear DTC Information",
+    "SID" : "14",
+    "FUNCTION" : "Clear All DTCs",
+    "REQUEST" : "14 FF FF FF",
+    "RESPONSE" : "54",
+    "CHECK" : "FALSE"
+  },
+  {
+    "SERVICE" : "Clear DTC Information",
+    "SID" : "14",
+    "FUNCTION" : "Clear All Powertrain DTCs",
+    "REQUEST" : "14 FF 00 00",
+    "RESPONSE" : "54",
+    "CHECK" : "FALSE"
+  },
+  {
+    "SERVICE" : "Clear DTC Information",
+    "SID" : "14",
+    "FUNCTION" : "Clear All Network DTCs",
+    "REQUEST" : "14 00 FF 00",
+    "RESPONSE" : "54",
+    "CHECK" : "FALSE"
+  },
+  {
+    "SERVICE" : "Read DTC Information",
+    "SID" : "19",
+    "FUNCTION" : "Read DTC Number By Status Mask",
+    "REQUEST" : "19 01 FF",
+    "RESPONSE" : "59",
+    "CHECK" : "FALSE"
+  },
+  {
+    "SERVICE" : "Read DTC Information",
+    "SID" : "19",
+    "FUNCTION" : "Read DTC Code By Status Mask",
+    "REQUEST" : "19 02 FF",
+    "RESPONSE" : "59",
+    "CHECK" : "FALSE"
+  },
+  {
+    "SERVICE" : "Read DTC Information",
+    "SID" : "19",
+    "FUNCTION" : "Read DTC Snapshot By DTC Code",
+    "REQUEST" : "19 04",
+    "RESPONSE" : "59",
+    "CHECK" : "FALSE"
+  },
+  {
+    "SERVICE" : "Read DTC Information",
+    "SID" : "19",
+    "FUNCTION" : "Read Snapshot Memory Address By DTC Code",
+    "REQUEST" : "19 05",
+    "RESPONSE" : "59",
+    "CHECK" : "FALSE"
+  },
+  {
+    "SERVICE" : "Read DTC Information",
+    "SID" : "19",
+    "FUNCTION" : "Read Snapshot By Memory Address",
+    "REQUEST" : "19 07",
+    "RESPONSE" : "59",
+    "CHECK" : "FALSE"
+  },
+  {
+    "SERVICE" : "Read DTC Information",
+    "SID" : "19",
+    "FUNCTION" : "Read Snapshot Data Availablity Mask",
+    "REQUEST" : "19 08",
+    "RESPONSE" : "59",
+    "CHECK" : "FALSE"
+  },
+  {
+    "SERVICE" : "Read DTC Information",
+    "SID" : "19",
+    "FUNCTION" : "Read Supported DTC Information",
+    "REQUEST" : "19 0A",
+    "RESPONSE" : "59",
+    "CHECK" : "FALSE"
+  },
+  {
+    "SERVICE" : "Read Data By Identifier",
+    "SID" : "22",
+    "FUNCTION" : "UDS Session Information",
+    "REQUEST" : "22 F1 86",
+    "RESPONSE" : "62",
+    "CHECK" : "FALSE"
+  },
+  {
+    "SERVICE" : "Read Data By Identifier",
+    "SID" : "22",
+    "FUNCTION" : "Application Software Number",
+    "REQUEST" : "22 F1 95",
+    "RESPONSE" : "62",
+    "CHECK" : "FALSE"
+  },
+  {
+    "SERVICE" : "Read Data By Identifier",
+    "SID" : "22",
+    "FUNCTION" : "Active Software Component",
+    "REQUEST" : "22 72 15",
+    "RESPONSE" : "62",
+    "CHECK" : "FALSE"
+  },
+  {
+    "SERVICE" : "Write Data By Identifier",
+    "SID" : "2E",
+    "FUNCTION" : "UDS Session Information",
+    "REQUEST" : "2E",
+    "RESPONSE" : "6E",
+    "CHECK" : "FALSE"
+  },
+  {
+    "SERVICE" : "Routine Control",
+    "SID" : "31",
+    "FUNCTION" : "Set Flag For PBL Jump",
+    "REQUEST" : "31 01 20 25",
+    "RESPONSE" : "71 01 20 25",
+    "CHECK" : "FALSE"
+  },
+  {
+    "SERVICE" : "Routine Control",
+    "SID" : "31",
+    "FUNCTION" : "Jump To Bootloaded",
+    "REQUEST" : "31 01 20 0D",
+    "RESPONSE" : "71 01 20 0D",
+    "CHECK" : "FALSE"
+  }
+]
